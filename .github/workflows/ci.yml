@@ -7,27 +7,62 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  rust:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: dtolnay/rust-toolchain@stable
         with:
-          node-version: 20
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Format
+        run: cargo fmt --all -- --check
+      - name: Clippy
+        run: cargo clippy --all-targets -- -D warnings
+      - name: Unit tests
+        run: cargo test --all-targets
+      - name: Release build
+        run: cargo build --release
 
-      # Uncomment and adjust the steps below to match your project's setup
-
-      # - name: Install dependencies
-      #   run: npm ci
-
-      # - name: Lint
-      #   run: npm run lint
-
-      # - name: Run tests
-      #   run: npm test
-
-      # - name: Build
-      #   run: npm run build
+  postgres-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Start PostgreSQL 18 laboratory
+        run: docker compose -f lab/compose.yaml up -d --wait
+      - name: Initialize and execute real workloads
+        run: |
+          cargo run -- lab init --seed 42
+          cargo run -- demo --scenario inventory-hotspot --concurrency 4 --seconds 3 --pool-size 4 --hold-ms 3 --output runs/baseline
+          cargo run -- demo --scenario inventory-hotspot --concurrency 4 --seconds 3 --pool-size 4 --hold-ms 1 --output runs/candidate
+          cargo run -- demo --scenario pool-starvation --concurrency 8 --seconds 3 --pool-size 2 --hold-ms 30 --output runs/pool-starvation
+          cargo run -- demo --scenario index-contention --concurrency 4 --seconds 2 --pool-size 4 --output runs/index-baseline
+          cargo run -- demo --scenario index-contention --indexed --concurrency 4 --seconds 2 --pool-size 4 --output runs/index-candidate
+      - name: Compare reports and enforce invariants
+        run: |
+          cargo run -- compare runs/baseline runs/candidate --strict
+          cargo run -- compare runs/index-baseline runs/index-candidate --strict
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for directory in (Path("runs/baseline"), Path("runs/candidate"), Path("runs/pool-starvation"), Path("runs/index-baseline"), Path("runs/index-candidate")):
+              report_path, = directory.glob("*.json")
+              report = json.loads(report_path.read_text())
+              assert report["completed"] > 0, report
+              assert report["correctness"]["inventory_nonnegative"]
+              assert report["correctness"]["inventory_restored"]
+              assert report["request_latency_ms"]["samples"] > 0
+              assert report["monitoring"]["samples"] > 0
+              assert report["statement_stats"] is not None
+              assert report["statement_stats"]["valid"]
+              if report["scenario"] == "pool-starvation":
+                  assert report["pool_acquire_ms"]["p95"] > 0
+                  assert report["pool_wait_dominant_requests"] > 0
+              if report["scenario"] == "index-contention":
+                  assert report["query_plan"] is not None
+          PY
+      - name: Stop laboratory
+        if: always()
+        run: docker compose -f lab/compose.yaml down -v
