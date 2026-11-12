@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:18
+    command:
+      [
+        "postgres",
+        "-c",
+        "shared_preload_libraries=pg_stat_statements",
+        "-c",
+        "compute_query_id=on",
+        "-c",
+        "track_io_timing=on",
+        "-c",
+        "log_lock_waits=on",
+        "-c",
+        "deadlock_timeout=200ms",
+      ]
+    environment:
+      POSTGRES_USER: querystorm_admin
+      POSTGRES_PASSWORD: querystorm_admin
+      POSTGRES_DB: querystorm
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - querystorm_pgdata:/var/lib/postgresql
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U querystorm_admin -d querystorm"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  querystorm_pgdata:
