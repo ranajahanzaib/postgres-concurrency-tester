@@ -1,46 +1,31 @@
-## Contributing
+# Contributing
 
-We welcome contributions of all kinds to improve this project! Here's how you can get involved:
+Contributions to PostgreSQL Concurrency Tester are welcome. Issues and pull requests should focus on reproducible PostgreSQL concurrency experiments, accurate measurement, safety, or clear documentation.
 
-1. **Fork the Repository**: Start by forking the repository to your GitHub account.
+## Development setup
 
-2. **Clone Your Fork**: Clone the forked repository to your local machine:
+Install Rust 1.85 or newer and Docker Compose. Clone the repository and start the disposable PostgreSQL lab:
 
-   ```bash
-   git clone <repo_url>
-   cd repo_dir
-   ```
+```sh
+git clone https://github.com/ranajahanzaib/postgres-concurrency-tester.git
+cd postgres-concurrency-tester
+docker compose -f lab/compose.yaml up -d --wait
+cargo run -- lab init --seed 42
+```
 
-3. **Create a Branch**: Create a new branch for your feature or bug fix:
+Before submitting a change, run the local checks:
 
-   ```bash
-   git checkout -b feature-name
-   ```
+```sh
+cargo fmt --all -- --check
+cargo clippy --all-targets -- -D warnings
+cargo test --all-targets
+cargo build --release
+```
 
-4. **Make Changes**: Make your changes to the codebase. Be sure to follow existing code style and conventions.
+For changes to database behavior, run at least one relevant workload against the local lab and include the command and observed outcome in the pull request. Do not include credentials, private reports, or production data in issues or pull requests. Stop the lab when finished with `docker compose -f lab/compose.yaml down -v`; this removes its local database volume.
 
-5. **Commit Changes**: Commit your changes with a clear and descriptive message:
+## Pull requests
 
-   ```bash
-   git commit -m "Add detailed description of the changes"
-   ```
+Describe the behavior changed and why. Include tests or reproduction steps, note any changes to the CLI or report format, and update the README when user-visible behavior changes. Keep benchmark claims tied to measured results and describe the machine and configuration used. Do not present local measurements as universal performance guarantees.
 
-6. **Push Changes**: Push your changes to your fork:
-
-   ```bash
-   git push origin feature-name
-   ```
-
-7. **Submit a Pull Request**: Open a pull request from your branch to the main repository's branch. Include a detailed description of your changes and the problem they solve.
-
-8. **Review and Feedback**: Participate in the review process. Make any requested changes, and your contribution will be merged!
-
-### Guidelines
-
-- Ensure your code follows the existing style and conventions.
-- Include tests for any new functionality or bug fixes.
-- Write clear, concise commit messages and pull request descriptions.
-
-### Issues
-
-Feel free to report bugs or suggest enhancements by creating an issue. Be sure to include detailed information about the problem and, if possible, steps to reproduce it.
+For substantial changes, open an issue first to discuss scope and compatibility. Be respectful in review discussions and follow the [Code of Conduct](CODE_OF_CONDUCT.md).

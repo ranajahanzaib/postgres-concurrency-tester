@@ -1,26 +1,26 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
+about: Report a reproducible problem with PostgreSQL Concurrency Tester
+title: ""
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## What happened?
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. See error
+Describe the behavior and what you expected instead.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Reproduction
 
-**Environment**
-- OS: [e.g. macOS 26.4.1, Windows 11, Ubuntu 24.04.4]
-- Version: [e.g. 1.0.0]
+List the command, scenario, and steps needed to reproduce the problem. Remove credentials and private data before sharing logs or reports.
 
-**Additional context**
-Add any other context or screenshots here.
+## Environment
+
+- PostgreSQL Concurrency Tester version or commit:
+- Operating system:
+- Rust version:
+- PostgreSQL image/version:
+
+## Relevant output
+
+Paste the smallest relevant error or report excerpt. Do not attach production data or secrets.

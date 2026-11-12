@@ -1,19 +1,23 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
+about: Propose an improvement to PostgreSQL Concurrency Tester
+title: ""
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Problem
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+What use case or limitation would this address?
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## Proposed behavior
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+Describe the expected CLI, report, dashboard, workload, or documentation behavior.
+
+## Alternatives
+
+Describe any alternatives considered, if relevant.
+
+## Additional context
+
+Include examples or references that clarify the request. Do not include credentials or private data.

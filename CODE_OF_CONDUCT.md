@@ -58,10 +58,7 @@ representative at an online or offline event.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-[INSERT CONTACT METHOD].
-All complaints will be reviewed and investigated promptly and fairly.
+Report Code of Conduct concerns privately by opening a [GitHub Security Advisory](https://github.com/ranajahanzaib/postgres-concurrency-tester/security/advisories/new) for this repository. If private reporting is unavailable, contact [GitHub Support](https://support.github.com/contact) and reference the repository. Reports will be reviewed as promptly and fairly as possible.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.

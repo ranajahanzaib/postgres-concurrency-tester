@@ -1,10 +1,18 @@
-Fixes #<issue_number_goes_here>
+## Summary
 
-> It's a good idea to open an issue first for discussion.
+Describe the behavior changed and why.
 
-**Description**
-A brief summary of what this PR does and why.
+## Validation
 
-- [ ] Tests pass
-- [ ] README updated if needed
-- [ ] No breaking changes (or described below)
+- [ ] `cargo fmt --all -- --check`
+- [ ] `cargo clippy --all-targets -- -D warnings`
+- [ ] `cargo test --all-targets`
+- [ ] Relevant PostgreSQL workload or manual reproduction, if applicable
+
+## Compatibility and documentation
+
+- [ ] User-visible CLI or report changes are described
+- [ ] Documentation is updated when needed
+- [ ] Breaking changes are identified
+
+Related issue (optional):
