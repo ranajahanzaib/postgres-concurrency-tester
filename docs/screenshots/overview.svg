@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="537" viewBox="0 0 1100 537" role="img" aria-label="CLI commands terminal output"><rect width="1100" height="537" rx="16" fill="#101820"/><path d="M0 16Q0 0 16 0h1068q16 0 16 16v48H0z" fill="#202d37"/><circle cx="27" cy="32" r="6" fill="#ff6b63"/><circle cx="48" cy="32" r="6" fill="#ffbd44"/><circle cx="69" cy="32" r="6" fill="#00ca4e"/><text x="550" y="37" text-anchor="middle" fill="#b6c5ce" font-family="sans-serif" font-size="14">CLI commands</text><g font-family="ui-monospace, SFMono-Regular, Menlo, monospace"><text x="32" y="92" fill="#7dd3a7" font-size="15">$ ./target/debug/postgres-concurrency-tester --help</text>
+<text x="32" y="119" fill="#d8e2e8" font-size="15">Find database failures caused by concurrency, not just slow SQL</text>
+<text x="32" y="146" fill="#d8e2e8" font-size="15"></text>
+<text x="32" y="173" fill="#d8e2e8" font-size="15">Usage: postgres-concurrency-tester &lt;COMMAND&gt;</text>
+<text x="32" y="200" fill="#d8e2e8" font-size="15"></text>
+<text x="32" y="227" fill="#d8e2e8" font-size="15">Commands:</text>
+<text x="32" y="254" fill="#d8e2e8" font-size="15">  doctor   </text>
+<text x="32" y="281" fill="#d8e2e8" font-size="15">  lab      </text>
+<text x="32" y="308" fill="#d8e2e8" font-size="15">  demo     </text>
+<text x="32" y="335" fill="#d8e2e8" font-size="15">  matrix   </text>
+<text x="32" y="362" fill="#d8e2e8" font-size="15">  serve    </text>
+<text x="32" y="389" fill="#d8e2e8" font-size="15">  compare  </text>
+<text x="32" y="416" fill="#d8e2e8" font-size="15">  help     Print this message or the help of the given subcommand(s)</text>
+<text x="32" y="443" fill="#d8e2e8" font-size="15"></text>
+<text x="32" y="470" fill="#d8e2e8" font-size="15">Options:</text>
+<text x="32" y="497" fill="#d8e2e8" font-size="15">  -h, --help  Print help</text></g></svg>

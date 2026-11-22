@@ -2,6 +2,32 @@
 
 PostgreSQL Concurrency Tester runs controlled PostgreSQL concurrency experiments and reports client-observed request latency, connection-pool waiting, SQL round trips, throughput, and correctness. A query can be quick alone but become a bottleneck when transactions compete for the same row.
 
+![CLI demonstration showing the available experiment scenarios and options](docs/screenshots/overview.svg)
+
+This is a Rust command-line tool for running reproducible experiments against a disposable PostgreSQL lab. It measures what application clients experience while a separate monitor samples PostgreSQL activity.
+
+## Demonstration
+
+The terminal captures below use actual CLI output. Database-backed runs require the Docker Compose lab described below; they exercise inventory row locking, connection-pool starvation, or indexed reads and write JSON and Markdown reports to `runs/`.
+
+| CLI workflow | Example |
+| --- | --- |
+| Commands | ![Available CLI commands](docs/screenshots/overview.svg) |
+| Configure an experiment | ![Demo scenario and options](docs/screenshots/demo-options.svg) |
+| Run a bounded matrix | ![Matrix options](docs/screenshots/matrix-options.svg) |
+| Compare report files | ![Compare options](docs/screenshots/compare-options.svg) |
+| Input validation | ![Zero concurrency is rejected](docs/screenshots/validation.svg) |
+
+## Features
+
+- Three controlled scenarios: inventory hotspot, pool starvation, and indexed reads.
+- Client-observed latency percentiles, connection pool wait, SQL round trips, and throughput.
+- PostgreSQL session, lock, database-counter, and `pg_stat_statements` observations.
+- JSON and Markdown reports, bounded experiment matrices, and baseline/candidate comparisons.
+- A loopback-only HTTP endpoint for report history.
+
+The current runner uses closed-loop workloads. Open-loop scheduling, deadlock reproduction, reservation contention, comparison across concurrency sweeps, and the planned React dashboard are not implemented.
+
 ## Current capabilities
 
 - A Docker PostgreSQL 18 lab with `pg_stat_statements` preloaded.
@@ -67,6 +93,10 @@ postgres-concurrency-tester serve [--directory DIR] [--listen IP:PORT]
 `compare` accepts one run JSON file or a directory containing exactly one run JSON file for each side. Pool size and hold interval may differ and are surfaced as configuration differences; scenario, concurrency, duration, and correctness must remain comparable.
 
 The server listens on localhost by default and serves `/` plus JSON run history at `/api/runs`.
+
+## Project verification
+
+`cargo fmt --check`, `cargo test`, and `cargo clippy --all-targets -- -D warnings` are the local code checks. A live experiment additionally requires Docker access and a running PostgreSQL lab. The lab uses fixed sample passwords and is intended only for disposable local development; see [Security and data handling](#security-and-data-handling).
 
 ## Development
 

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="726" viewBox="0 0 1100 726" role="img" aria-label="Experiment options terminal output"><rect width="1100" height="726" rx="16" fill="#101820"/><path d="M0 16Q0 0 16 0h1068q16 0 16 16v48H0z" fill="#202d37"/><circle cx="27" cy="32" r="6" fill="#ff6b63"/><circle cx="48" cy="32" r="6" fill="#ffbd44"/><circle cx="69" cy="32" r="6" fill="#00ca4e"/><text x="550" y="37" text-anchor="middle" fill="#b6c5ce" font-family="sans-serif" font-size="14">Experiment options</text><g font-family="ui-monospace, SFMono-Regular, Menlo, monospace"><text x="32" y="92" fill="#7dd3a7" font-size="15">$ ./target/debug/postgres-concurrency-tester demo --help</text>
+<text x="32" y="119" fill="#d8e2e8" font-size="15">Usage: postgres-concurrency-tester demo [OPTIONS]</text>
+<text x="32" y="146" fill="#d8e2e8" font-size="15"></text>
+<text x="32" y="173" fill="#d8e2e8" font-size="15">Options:</text>
+<text x="32" y="200" fill="#d8e2e8" font-size="15">      --scenario &lt;SCENARIO&gt;</text>
+<text x="32" y="227" fill="#d8e2e8" font-size="15">          [default: inventory-hotspot] [possible values: inventory-hotspot, pool-starvation, index-contention]</text>
+<text x="32" y="254" fill="#d8e2e8" font-size="15">      --indexed</text>
+<text x="32" y="281" fill="#d8e2e8" font-size="15">          Build the composite orders index for the index-contention scenario</text>
+<text x="32" y="308" fill="#d8e2e8" font-size="15">      --allow-remote</text>
+<text x="32" y="335" fill="#d8e2e8" font-size="15">          Allow a non-loopback PostgreSQL target; only use with an explicitly disposable database</text>
+<text x="32" y="362" fill="#d8e2e8" font-size="15">      --database-url &lt;DATABASE_URL&gt;</text>
+<text x="32" y="389" fill="#d8e2e8" font-size="15">          [env: DATABASE_URL=] [default: postgres://querystorm_app:querystorm_app@localhost:55432/querystorm]</text>
+<text x="32" y="416" fill="#d8e2e8" font-size="15">      --monitor-database-url &lt;MONITOR_DATABASE_URL&gt;</text>
+<text x="32" y="443" fill="#d8e2e8" font-size="15">          [env: MONITOR_DATABASE_URL=] [default: postgres://querystorm_monitor:querystorm_monitor@localhost:55432/querystorm]</text>
+<text x="32" y="470" fill="#d8e2e8" font-size="15">      --concurrency &lt;CONCURRENCY&gt;</text>
+<text x="32" y="497" fill="#d8e2e8" font-size="15">          [default: 16]</text>
+<text x="32" y="524" fill="#d8e2e8" font-size="15">      --seconds &lt;SECONDS&gt;</text>
+<text x="32" y="551" fill="#d8e2e8" font-size="15">          [default: 10]</text>
+<text x="32" y="578" fill="#d8e2e8" font-size="15">      --pool-size &lt;POOL_SIZE&gt;</text>
+<text x="32" y="605" fill="#d8e2e8" font-size="15">          [default: 8]</text>
+<text x="32" y="632" fill="#d8e2e8" font-size="15">      --hold-ms &lt;HOLD_MS&gt;</text>
+<text x="32" y="659" fill="#d8e2e8" font-size="15">          [default: 5]</text>
+<text x="32" y="686" fill="#d8e2e8" font-size="15">…</text></g></svg>
