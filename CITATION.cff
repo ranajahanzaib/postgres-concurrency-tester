@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use PostgreSQL Concurrency Tester in research or teaching, please cite this software."
+title: "PostgreSQL Concurrency Tester"
+version: 0.1.0
+authors:
+  - family-names: Rana
+    given-names: Jahanzaib
+    orcid: "https://orcid.org/0009-0006-7085-0440"
+repository-code: "https://github.com/ranajahanzaib/postgres-concurrency-tester"
+license: MIT
+abstract: "PostgreSQL Concurrency Tester runs controlled PostgreSQL concurrency experiments and reports client-observed request latency, connection-pool waiting, SQL round trips, throughput, and correctness."
+keywords:
+  - postgresql
+  - concurrency
+  - benchmarking
+  - performance
+  - database
